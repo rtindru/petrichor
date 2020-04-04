@@ -1,3 +1,6 @@
 raw_data/
 clean_data/
 .ipynb_checkpoints
+*.bin*
+*.gzip
+.*
