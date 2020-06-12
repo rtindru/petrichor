@@ -1,0 +1,24 @@
+{% extends  "base.html" %}
+
+{% block head %}
+<title>Learning the Bootstrap grid system</title>
+<style>
+    .col-sm {
+        padding: 0;
+        flex: none;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="">
+   {% for r in range(8) %}
+        {% for c in range(8) %}
+        <div class="col-sm" style="display: inline-block; background-color: {{ loop.cycle('red', 'green', 'blue') }}; width: {{ range(50, 150) | random }}px; height: {{ range(50, 150) | random }}px">
+            &nbsp;
+        </div>
+        {% endfor %}         
+   {% endfor %}
+</div>
+
+{% endblock %}

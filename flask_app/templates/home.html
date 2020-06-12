@@ -1,0 +1,74 @@
+{% extends  "base.html" %}
+
+{% block head %}
+<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+<style>
+    body {
+        background-image: url("../static/Background.jpg");
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        font-family: Roboto Mono;
+        font-style: normal;
+        font-weight: normal;
+        color: #fff;
+        margin-top: 50px;
+    }
+
+    h1 {
+        font-size: 72px;
+        
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+    .center {
+        text-align: center;
+    }
+
+    #search {
+        background: rgba(196, 196, 196, 0.35);
+        border-radius: 50px;
+        max-width: 600px;
+        color: #fff;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 50px;
+    }
+
+    #search:focus {
+        border-color: #fff;
+        box-shadow:  0 0 0 0.2rem rgba(196, 196, 196, 0.35);
+    }
+
+    #search::placeholder {
+        color: #fff;
+        opacity: 0.8;
+    }
+    .intro {
+        margin-top: 150px;
+        font-weight: 300;
+    }
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container center">
+    <h1>Petrichor</h1>
+    <h4>The reverse dictionary</h4>
+    <form method="GET">
+        <input type="text" class="form-control" id="search" name="query" 
+        placeholder="Describe your word in plain english...">
+    </form>
+    <div class="intro">
+        <p>Ever have a word at the tip of your tongue that you couldn’t recall?</p>
+        <p>Ever wonder what earthy smell after rain is called?</p>
+        <br>
+        <p>Petrichor is a reverse dictionary — type a phrase to get your word.</p>
+        <p>Petrichor can help you search for words like this, and more!</p>
+    </div>
+</div>
+{% endblock %}
