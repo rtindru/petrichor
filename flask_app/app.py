@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     query = request.args.get('query')
-    if query != "":
+    if query:
         return render_template("result.html")    
     return render_template("home.html")
 

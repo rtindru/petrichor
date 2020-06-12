@@ -1,8 +1,140 @@
 {% extends  "base.html" %}
 
 {% block head %}
+<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+<style>
+    body {
+        background-image: url("../static/Background.jpg");
+        background-repeat: no-repeat;
+        /* Do not repeat the image */
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        font-family: Roboto Mono;
+        font-style: normal;
+        font-weight: normal;
+        color: #fff;
+        margin-top: 35px;
+    }
+
+    h1 {
+        font-size: 72px;
+
+    }
+
+
+
+    h4 {
+        font-size: 24px;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    #search {
+        background: rgba(196, 196, 196, 0.35);
+        border-radius: 50px;
+        max-width: 600px;
+        color: #fff;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 50px;
+    }
+
+    #search:focus {
+        border-color: #fff;
+        box-shadow: 0 0 0 0.2rem rgba(196, 196, 196, 0.35);
+    }
+
+    #search::placeholder {
+        color: #fff;
+        opacity: 0.8;
+    }
+
+    .intro {
+        margin-top: 150px;
+        font-weight: 300;
+    }
+
+    .left {
+        text-align: left;
+
+    }
+
+    .resultcolor {
+        color: #fff;
+
+    }
+
+    .result {
+        background-color: rgba(196, 196, 196, 0.35);
+        border-radius: 50px;
+    }
+
+    .btn-link:hover {
+        color: #fff;
+        text-decoration: none;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    .btn-link.focus,
+    .btn-link:focus {
+        text-decoration: none;
+        border-color: transparent;
+        box-shadow: none;
+    }
+</style>
+
 {% endblock %}
 
 {% block body %}
-<h1>RESULT PAGE</h1>
-{% endblock %}
+<div class="container center">
+    <h1>Petrichor</h1>
+    <h4>The reverse dictionary</h4>
+    <br>
+    <br>
+    <div class="left">
+        <h5>Showing results for:</h5>
+    </div>
+    <div class="accordion">
+        <div class="card result">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left resultcolor" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Result 1
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body resultcolor">
+                    poopy
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="card result">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left resultcolor" type="button" data-toggle="collapse"
+                    data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Result 1
+                </button>
+            </h2>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body resultcolor">
+                poopy
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% endblock %}
