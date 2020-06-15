@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 
+model = None
 app = Flask(__name__)
 
 @app.route('/')
@@ -7,8 +8,9 @@ def home():
     query = request.args.get('query')
     if query:
         res = resML(query)
-        return render_template("result.html", result=res)    
+        return render_template("result.html", res=res, query=query)    
     return render_template("home.html")
+
 
 def resML(query):
     """
@@ -16,18 +18,16 @@ def resML(query):
     INPUT: string query
     OUTPUT: list 5 tuples [('word', 'meaning')]
     """
-    res = [
-        ('petrichor', 'smell of mud after rain'),
-        ('rain', 'drops of water in sky'),
-        ('water', 'chemical consisting of hydrogen and oxygen'),
-        ('sand','particles that sedimented from rocks'),
-        ('mud', 'layer of soil containing dirt, rocks and other stuff'),
-    ]
-    return res
+    words = model.get_words(query)
+    result = model.get_meanings(words)
+    return result
+
 
 @app.route('/chess')
 def chess():
     return render_template("chess.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import nltk; nltk.download('wordnet'); nltk.download('punkt'); nltk.download('stopwords')
+    from ml import Model; model = Model('9_june_2020_v1')
+    app.run(debug=True, threaded=False)

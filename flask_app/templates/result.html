@@ -5,7 +5,7 @@
 <style>
     body {
         background-image: url("../static/Background.jpg");
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
         /* Do not repeat the image */
         background-size: cover;
         background-position: center;
@@ -33,7 +33,7 @@
     }
 
     #search {
-        background: rgba(196, 196, 196, 0.35);
+        background: rgba(196, 196, 196, 0.1);
         border-radius: 50px;
         max-width: 600px;
         color: #fff;
@@ -44,12 +44,20 @@
 
     #search:focus {
         border-color: #fff;
-        box-shadow: 0 0 0 0.2rem rgba(196, 196, 196, 0.35);
+        box-shadow: 0 0 0 0.2rem rgba(196, 196, 196, 0.1);
+    }
+
+    .accordion {
+        text-align: left;
     }
 
     #search::placeholder {
         color: #fff;
         opacity: 0.8;
+    }
+
+    .card-header {
+        padding: 0.5em 0.75em;
     }
 
     .intro {
@@ -68,9 +76,9 @@
     }
 
     .result {
-        background-color: rgba(196, 196, 196, 0.35);
+        background-color: rgba(196, 196, 196, 0.1);
         border-radius: 50px;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .btn-link:hover {
@@ -97,32 +105,33 @@
     <br>
     <br>
     <div class="left">
-        <h5>Showing results for:</h5>
+        <h5>Showing results for: {{query}}</h5>
     </div>
-    <div class="accordion">
-
-        {% for i in result %}
-        <div class="card result">
-            <div class="card-header" id="heading{{loop.index}}">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left resultcolor" type="button" data-toggle="collapse"
-                        data-target="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
-                        {{ i.0 }}
-                    </button>
-                </h2>
-            </div>
-            <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="heading{{loop.index}}" data-parent="#accordionExample">
-                <div class="card-body resultcolor">
-                    {{ i.1 }}
+    <div>
+        {% for word, meanings in res %}
+        {% if loop.index % 2 == 1 %}<div class="row">{% endif %}
+            <div class="col-md-6">
+                <div class="accordion">
+                    <div class="card result">
+                        <div class="card-header" id="heading{{loop.index}}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left resultcolor" type="button" data-toggle="collapse"
+                                    data-target="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
+                                    {{ word }}
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapse{{loop.index}}" class="collapse" aria-labelledby="heading{{loop.index}}" data-parent="#accordionExample">
+                            <div class="card-body resultcolor">
+                                {% for pos, meaning in meanings %}
+                                <p>{{pos}}: {{meaning}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-
-        </div>
+            </div>  
+        {% if loop.index % 2 == 0 %}</div>{% endif %}
         {% endfor %}
     </div>
-
-
-
-
     {% endblock %}
