@@ -4,12 +4,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
 <style>
     body {
-        background-image: url("../static/Background.jpg");
-        background-repeat: repeat-y;
-        /* Do not repeat the image */
-        background-size: cover;
-        background-position: center;
-        height: 100vh;
+        background-color: #014421;
         font-family: Roboto Mono;
         font-style: normal;
         font-weight: normal;
@@ -94,6 +89,10 @@
         border-color: transparent;
         box-shadow: none;
     }
+
+    .results {
+        margin-top: 50px;
+    }
 </style>
 
 {% endblock %}
@@ -105,9 +104,9 @@
     <br>
     <br>
     <div class="left">
-        <h5>Showing results for: {{query}}</h5>
+        <h5>Showing top 10 results for: <strong>{{query}}</strong></h5>
     </div>
-    <div>
+    <div class="results">
         {% for word, meanings in res %}
         {% if loop.index % 2 == 1 %}<div class="row">{% endif %}
             <div class="col-md-6">
@@ -130,8 +129,15 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         {% if loop.index % 2 == 0 %}</div>{% endif %}
         {% endfor %}
+    </div>
+    <div class="results">
+        <h5>Not happy with the results?</p>
+        <form method="GET" action="/">
+            <input type="text" class="form-control" id="search" name="query" 
+            placeholder="Try describing your word differently...">
+        </form>
     </div>
     {% endblock %}

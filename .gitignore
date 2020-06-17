@@ -1,4 +1,4 @@
-static/ml_models/*
+flask_app/static/ml_models/*
 raw_data/
 clean_data/
 .ipynb_checkpoints
