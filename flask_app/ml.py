@@ -18,13 +18,15 @@ MAX_SEQUENCE_LENGTH = 200
 class Model(object):
     def __init__(self, version_name):
         super().__init__()
-        self.load_model(version_name)
+        self.version_name = version_name
+        self.load_model()
 
 
-    def load_model(self, version_name):
-        self.tokenizer = pickle.load(open('static/ml_models/{}_tokenizer.pkl'.format(version_name), 'rb'))
-        self.le = pickle.load(open('static/ml_models/{}_label_encoder.pkl'.format(version_name), 'rb'))
-        self.model = keras.models.load_model('static/ml_models/{}_model.h5'.format(version_name))
+    def load_model(self):
+        self.tokenizer = pickle.load(open(f'./ml_models/{self.version_name}_tokenizer.pkl', 'rb'))
+        self.le = pickle.load(open(f'./ml_models/{self.version_name}_label_encoder.pkl', 'rb'))
+        self.model = keras.models.load_model(f'./ml_models/{self.version_name}_model.h5')
+
 
     def get_words(self, meaning):
         if self.model is None:

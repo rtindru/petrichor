@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
 
-model = None
 app = Flask(__name__)
+
+from ml import Model
+model = Model('15_june_2020_v1')
 
 @app.route('/')
 def home():
@@ -29,5 +31,4 @@ def chess():
 
 if __name__ == "__main__":
     import nltk; nltk.download('wordnet'); nltk.download('punkt'); nltk.download('stopwords')
-    from ml import Model; model = Model('9_june_2020_v1')
     app.run(debug=True, threaded=False)

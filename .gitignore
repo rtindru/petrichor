@@ -6,3 +6,4 @@ clean_data/
 *.gzip
 .*
 *.pyc
+flask_app/ml_models/*
